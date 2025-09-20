@@ -1,3 +1,4 @@
-Quando você usa ponteiro, a função recebe apenas o endereço da struct e altera os valores direto nela, não acontece cópia dos dados. isso gasta pouca memória e é rápido, porque só passa um endereço fixo.
-Quando a função retorna a struct, ela cria uma struct local dentro dela e, no retorno, copia todos os valores para a variável que recebeu. Se a struct for pequena, essa cópia é leve e quase não faz diferença. 
-Se for grande, pode gastar mais memória e tempo, já que todos os campos precisam ser copiados.
+Quando você usa ponteiro, a função recebe apenas o endereço da struct e altera os valores direto nela, não acontece cópia dos dados. isso gasta pouca memória
+e é rápido, porque só passa um endereço fixo, quando a função retorna a struct, ela cria uma struct local dentro dela e, no retorno, copia todos os valores para 
+a variável que recebeu. Se a struct for pequena, essa cópia é leve e quase não faz diferença. Se for grande, pode gastar mais memória e tempo, já que todos os 
+campos precisam ser copiados.
