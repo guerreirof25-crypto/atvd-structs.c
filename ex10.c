@@ -1,62 +1,69 @@
-#include <stdio.h>
+#include<stdio.h>
 
-#define N 10
-#define TAM 10
-
-struct ponto {
+struct ponto{
     int x;
     int y;
 };
 
-struct personagem {
+struct personagem{
     int id;
     struct ponto pos;
     int pontuacao;
 };
 
-struct ponto lePonto(void) {
-    struct ponto p;
-    printf("Digite a posição (x y): ");
-    scanf("%d %d", &p.x, &p.y);
-    return p;
-}
 
-struct personagem lePersonagem(void) {
+struct personagem preencheb(void){
     struct personagem p;
-    printf("Digite a id: ");
-    scanf("%d", &p.id);
-    p.pos = lePonto();
-    printf("Digite a pontuação: ");
-    scanf("%d", &p.pontuacao);
+    printf("digite a id: ");
+    scanf("%d",&p.id);
+    printf("digite a pontuação: ");
+    scanf("%d",&p.pontuacao);
+    printf("digite a coordenada x: ");
+    scanf("%d",&p.pos.x);
+    printf("digite a coordenada y: ");
+    scanf("%d",&p.pos.y);
     return p;
 }
 
-void desenhaMapa(struct personagem vet[], int n) {
-    printf("\n   ");
-    for (int x = 0; x < TAM; x++) printf("%d ", x);
-    printf("\n\n");
-    for (int y = 0; y < TAM; y++) {
-        printf("%d  ", y);
-        for (int x = 0; x < TAM; x++) {
-            char c = ' ';
-            for (int k = 0; k < n; k++) {
-                if (vet[k].pos.x == x && vet[k].pos.y == y) {
-                    c = '0' + (vet[k].id % 10);
-                    break;
-                }
-            }
-            printf("%c ", c);
-        }
-        printf("\n");
+    
+void vetor(struct personagem p[],int n){
+    for(int i=0;i<n;i++){
+        p[i]=preencheb();
     }
 }
 
-int main(void) {
-    struct personagem p[N];
-    for (int i = 0; i < N; i++) {
-        printf("\n--- Personagem %d ---\n", i + 1);
-        p[i] = lePersonagem();
+void posicao(struct personagem p[],int n){
+    int LC[10][10];
+    for(int i=0;i<10;i++){
+        for(int j=0;j<10;j++){
+            LC[i][j]=-1;
+        }
     }
-    desenhaMapa(p, N);
+    for(int k=0;k<10;k++){
+        LC[p[k].pos.x][p[k].pos.y]=p[k].id;
+    }
+    printf("   ");
+    for(int j=0;j<10;j++){
+        printf("%d  ", j);
+    }
+    printf("\n");
+    for(int i=0;i<10;i++){
+        printf("%d  ", i);
+        for(int j=0;j<10;j++){
+            if(LC[i][j]==-1){
+                printf(".  ");
+            }else{
+                printf("%d  " ,LC[i][j]);
+            }
+        }printf("\n");
+    }
+}
+
+
+
+int main(){
+    struct personagem p[10];
+    vetor(p,10);
+    posicao(p,10);
     return 0;
 }
